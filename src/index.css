@@ -53,7 +53,7 @@ textarea {
   gap: 18px;
   background-color: white;
   border-radius: 5px;
-  padding: 14px;
+  padding: 16px;
 }
 
 .link-to-new {
@@ -69,7 +69,7 @@ textarea {
   border-radius: 3px;
 }
 
-/* Post styles */
+/* Post Component styles */
 
 .user {
   display: flex;
@@ -126,26 +126,30 @@ textarea {
 
 .post-content {
   font-size: 18px;
+  margin: 10px;
 }
 
 .reactions {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding-left: 100px;
-  padding-right: 100px;
+  justify-content: space-around;
 }
 
 .reaction {
   display: flex;
-  gap: 5px;
+  gap: 8px;
   align-items: center;
+  font-size: 14px;
+  color: rgb(79, 79, 79);
 }
 
-.reaction-icon {
-  width: 12px;
-  height: 12px;
+.like-icon, .comment-icon {
+  width: 16px;
+  height: 16px;
   cursor: pointer;
+}
+.like-icon {
+  padding-bottom: 2px;
 }
 
 .reaction-text {
@@ -158,6 +162,7 @@ textarea {
   display: flex;
   gap: 5px;
   align-items: center;
+  margin-top: 10px;
 }
 
 .comment-img-wrapper {
@@ -200,8 +205,8 @@ textarea {
   height: 16px;
   cursor: pointer;
 }
-/* 
-Create Post styles */
+
+/* Create Post Page styles */
 
 .close-icon {
   position: absolute;
@@ -256,7 +261,7 @@ Create Post styles */
   font-size: 14px;
 }
 
-/* ViewPostPage styles */
+/* ViewPost Page styles */
 
 .buttons {
   display: flex;
@@ -268,7 +273,7 @@ Create Post styles */
   background-color: rgb(154, 24, 24);
 }
 
-/* Modal styles */
+/* Delete Modal styles */
 
 .modal-overlay {
   position: fixed;
@@ -306,7 +311,7 @@ Create Post styles */
   margin: 0;
 }
 
-/* EditPost styles */
+/* EditPost Component styles */
 
 .edit-header {
   display: flex;

@@ -62,7 +62,6 @@ export function EditPost({ post, setEditMode, loadPost}: EditPostProps) {
       <button onClick={editPost} className="update-btn">
         Сохранить
       </button>
-
       {error && <p className="error-message">{error}</p>}
     </>
   );

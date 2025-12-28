@@ -1,6 +1,7 @@
 import type { PostType } from "./Posts";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { CommentForm } from "./CommentForm";
 
 type PostProps = {
   post: PostType;
@@ -9,6 +10,7 @@ type PostProps = {
 
 export function Post({ post, withLink = true }: PostProps) {
   const [timeAgo, setTimeAgo] = useState("");
+  const [comment, setComment] = useState<boolean>(false);
   const { content, id, created } = post;
 
   function updateTimeAgo(created: string) {
@@ -30,13 +32,13 @@ export function Post({ post, withLink = true }: PostProps) {
   }
 
   useEffect(() => {
-     const timeoutId = setTimeout(() => updateTimeAgo(created), 0);
-     const intervalId = setInterval(() => updateTimeAgo(created), 60000);
+    const timeoutId = setTimeout(() => updateTimeAgo(created), 0);
+    const intervalId = setInterval(() => updateTimeAgo(created), 60000);
 
-     return () => {
-       clearTimeout(timeoutId);
-       clearInterval(intervalId);
-     };
+    return () => {
+      clearTimeout(timeoutId);
+      clearInterval(intervalId);
+    };
   }, [created]);
 
   return (
@@ -65,27 +67,22 @@ export function Post({ post, withLink = true }: PostProps) {
       ) : (
         <div className="post-content">{content}</div>
       )}
-      <div className="reaction">
-        <img src="/icons/like.png" alt="icon" className="reaction-icon" />
-      </div>
-      <div className="comment-input-block">
-        <div className="comment-img-wrapper">
-          <img src="/img/user.jpg" alt="user" className="comment-user-img" />
+      <div className="reactions">
+        <div className="reaction">
+          <img src="/icons/like.png" alt="icon" className="like-icon" />
+          Нравится
         </div>
-        <form action="" className="comment-form">
-          <input
-            type="text"
-            className="comment-input"
-            placeholder="Напишите комментрарий"
+        <div className="reaction">
+          <img
+            onClick={() => setComment(!comment)}
+            src="/icons/comment.png"
+            alt="icon"
+            className="comment-icon"
           />
-          <div className="icons-wrapper">
-            <img src="/icons/happyface.png" alt="" className="comment-icon" />
-            <img src="/icons/camera.png" alt="" className="comment-icon" />
-            <img src="/icons/gif.png" alt="" className="comment-icon" />
-            <img src="/icons/emojipicker.png" alt="" className="comment-icon" />
-          </div>
-        </form>
+          Комментарий
+        </div>
       </div>
+      {comment && <CommentForm />}
     </>
   );
 }
