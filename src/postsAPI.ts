@@ -1,5 +1,5 @@
 import axios from "axios";
-import type { PostType } from "./components/Posts";
+import type { PostType } from "./App";
 
 const BASE_URL = "http://localhost:7070/posts";
 

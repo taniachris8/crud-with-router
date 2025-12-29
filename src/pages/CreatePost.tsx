@@ -5,8 +5,8 @@ import { Block } from "../components/Block";
 
 export function CreatePostPage() {
   const [newPost, setNewPost] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const createPost = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -22,21 +22,21 @@ export function CreatePostPage() {
     };
 
     try {
+      setLoading(true);
       await createNewPost(post);
-      setSuccessMessage("Пост был успешно опубликован!");
+      navigate("/");
       setNewPost("");
     } catch (err: unknown) {
       if (err instanceof Error) {
-        setErrorMessage(err.message);
+        setErrorMessage(
+          "Проверьте подключение к Интернету или попробуйте позже."
+        );
       } else {
-        setErrorMessage("Unknown error");
+        setErrorMessage("Неизвестная ошибка. Попробуйте позже.");
       }
+    } finally {
+      setLoading(false);
     }
-  };
-
-  const handleClick = () => {
-    if (errorMessage) return;
-    navigate("/");
   };
 
   return (
@@ -46,7 +46,7 @@ export function CreatePostPage() {
           src="/icons/icons8-close-50.png"
           alt="icon"
           className="close-icon"
-          onClick={handleClick}
+          onClick={() => navigate("/")}
         />
         <div className="post-type">
           <img alt="icon" src="/icons/post.png" className="post-icon" />
@@ -60,17 +60,15 @@ export function CreatePostPage() {
             value={newPost}
             onChange={(e) => setNewPost(e.target.value)}
             onFocus={() => {
-              setSuccessMessage("");
               setErrorMessage("");
             }}></textarea>
           <div className="button-wrapper">
-            {successMessage && (
-              <p className="response-message">{successMessage}</p>
-            )}
             {errorMessage && <p className="error-message">{errorMessage}</p>}
-            <button onClick={handleClick} className="new-post-btn">
-              Опубликовать
-            </button>
+            {loading ? (
+              <button className="loading-new-post-btn">Публикация...</button>
+            ) : (
+              <button className="new-post-btn">Опубликовать</button>
+            )}
           </div>
         </form>
       </Block>

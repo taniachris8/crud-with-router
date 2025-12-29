@@ -12,10 +12,10 @@ export function CommentForm() {
             placeholder="Напишите комментарий"
           />
           <div className="icons-wrapper">
-            <img src="/icons/happyface.png" alt="" className="comment-icon" />
-            <img src="/icons/camera.png" alt="" className="comment-icon" />
-            <img src="/icons/gif.png" alt="" className="comment-icon" />
-            <img src="/icons/emojipicker.png" alt="" className="comment-icon" />
+            <img src="/icons/happyface.png" alt="icon" className="comment-icon" />
+            <img src="/icons/camera.png" alt="icon" className="comment-icon" />
+            <img src="/icons/gif.png" alt="icon" className="comment-icon" />
+            <img src="/icons/emojipicker.png" alt="icon" className="comment-icon" />
           </div>
         </form>
       </div>

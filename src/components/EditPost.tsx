@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { updatePostById } from "../postsAPI";
-import type { PostType } from "./Posts";
+import type { PostType } from "../App";
 
 type EditPostProps = {
   post: PostType;
@@ -10,8 +10,9 @@ type EditPostProps = {
 
 export function EditPost({ post, setEditMode, loadPost}: EditPostProps) {
   const { id, content } = post;
-  const [error, setError] = useState<string>("");
-  const [updatedPost, setUpdatedPost] = useState<string>(content);
+  const [error, setError] = useState("");
+  const [updatedPost, setUpdatedPost] = useState(content);
+  const [loading, setLoading] = useState(false)
 
   const editPost = async () => {
     try {
@@ -19,6 +20,8 @@ export function EditPost({ post, setEditMode, loadPost}: EditPostProps) {
         setError("Невозможно опубликовать пустой пост.");
         return;
       }
+
+      setLoading(true);
 
       const updated = {
         id,
@@ -29,10 +32,12 @@ export function EditPost({ post, setEditMode, loadPost}: EditPostProps) {
       setEditMode(false);
     } catch (err: unknown) {
       if (err instanceof Error) {
-        setError(err.message);
+        setError("Проверьте подключение к Интернету или попробуйте позже.");
       } else {
-        setError("Неизвестная ошибка");
+        setError("Неизвестная ошибка. Попробуйте позже.");
       }
+    } finally { 
+      setLoading(false);
     }
   };
 
@@ -56,12 +61,20 @@ export function EditPost({ post, setEditMode, loadPost}: EditPostProps) {
           name="updatedPost"
           value={updatedPost}
           className="edit-post-content"
-          onChange={(e) => setUpdatedPost(e.target.value)}>
-        </textarea>
+          onChange={(e) => setUpdatedPost(e.target.value)}
+          onFocus={() => {
+            setError("");
+          }}></textarea>
       </div>
-      <button onClick={editPost} className="update-btn">
-        Сохранить
-      </button>
+      {loading ? (
+        <button onClick={editPost} className="loading-update-btn">
+          Сохранение...
+        </button>
+      ) : (
+        <button onClick={editPost} className="update-btn">
+          Сохранить
+        </button>
+      )}
       {error && <p className="error-message">{error}</p>}
     </>
   );

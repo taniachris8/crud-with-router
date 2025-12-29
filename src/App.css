@@ -69,6 +69,11 @@ textarea {
   border-radius: 3px;
 }
 
+.posts-loading-icon {
+  width: 40px;
+  height: 40px;
+}
+
 /* Post Component styles */
 
 .user {
@@ -114,19 +119,22 @@ textarea {
 }
 
 .user-role {
-  color: gray;
+  color: rgb(76, 76, 76);
   font-weight: 700;
   font-size: 12px;
 }
 
 .created {
-  color: gray;
+  color: rgb(76, 76, 76);
   font-size: 12px;
 }
 
 .post-content {
   font-size: 18px;
   margin: 10px;
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .reactions {
@@ -140,10 +148,11 @@ textarea {
   gap: 8px;
   align-items: center;
   font-size: 14px;
-  color: rgb(79, 79, 79);
+  color: rgb(76, 76, 76);
 }
 
-.like-icon, .comment-icon {
+.like-icon,
+.comment-icon {
   width: 16px;
   height: 16px;
   cursor: pointer;
@@ -153,7 +162,7 @@ textarea {
 }
 
 .reaction-text {
-  color: gray;
+  color: rgb(76, 76, 76);
   font-weight: 700;
   font-size: 14px;
 }
@@ -182,7 +191,7 @@ textarea {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border: 1px solid rgb(176, 176, 176);
+  border: 1px solid rgb(76, 76, 76);
   border-radius: 5px;
   background-color: rgb(239, 239, 239);
   padding: 8px;
@@ -249,6 +258,12 @@ textarea {
   margin-left: auto;
 }
 
+.loading-new-post-btn {
+  width: 120px;
+  background-color: rgb(76, 76, 76);
+  margin-left: auto;
+}
+
 .response-message {
   color: green;
   margin: 0;
@@ -310,6 +325,10 @@ textarea {
 .modal-message {
   margin: 0;
 }
+.delete-error-message {
+  color: red;
+  padding-bottom: 10px;
+}
 
 /* EditPost Component styles */
 
@@ -355,5 +374,11 @@ textarea {
 
 .update-btn {
   width: 100px;
+  margin-left: auto;
+}
+
+.loading-update-btn {
+  width: 120px;
+  background-color: rgb(76, 76, 76);
   margin-left: auto;
 }

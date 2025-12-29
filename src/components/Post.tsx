@@ -1,4 +1,4 @@
-import type { PostType } from "./Posts";
+import type { PostType } from "../App";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { CommentForm } from "./CommentForm";
@@ -45,14 +45,14 @@ export function Post({ post, withLink = true }: PostProps) {
     <>
       <div className="user">
         <div className="img-wrapper">
-          <img className="user-img" src="/img/user.jpg" />
+          <img className="user-img" src="/img/user.jpg" alt="user" />
         </div>
         <div className="user-details">
           <p className="user-name">Anna Smith</p>
           <div className="user-info">
             <img
               src="/icons/icons8-vegan-50.png"
-              alt=""
+              alt="icon"
               className="role-icon"
             />
             <span className="user-role">Основатель группы</span>
